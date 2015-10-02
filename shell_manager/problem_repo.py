@@ -37,7 +37,8 @@ def local_update(repo_path, deb_paths=[]):
         dep_paths: list of problem deb paths to copy.
     """
 
-    [copy2(deb_path, repo_path) for deb_path in deb_paths]
+    for deb_path in deb_paths:
+        copy2(deb_path, repo_path)
 
     shell = spur.LocalShell()
     result = shell.run(["dpkg-scanpackages", ".", "/dev/null"], cwd=repo_path)

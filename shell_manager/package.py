@@ -153,7 +153,9 @@ def problem_builder(args, config):
 
 
         #Make all of the directories, order does not matter with makedirs
-        [makedirs(staging_path) for _, staging_path in paths.items() if not isdir(staging_path)]
+        for _, staging_path in paths.items():
+            if not isdir(staging_path):
+                makedirs(staging_path)
 
         args.ignore.append("__staging")
 

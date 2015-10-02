@@ -71,7 +71,9 @@ def bundle_problems(args, config):
     paths["debian"] = join(paths["staging"], "DEBIAN")
     paths["bundle_root"] = join(paths["staging"], get_bundle_root(bundle["name"]))
 
-    [makedirs(staging_path) for _, staging_path in paths.items() if not isdir(staging_path)]
+    for _, staging_path in path.items():
+        if not isdir(staging_path):
+            makedirs(staging_path)
 
     # note that this chmod does not work correct if on a vagrant shared folder,
     # so we need to package the problems elsewhere
